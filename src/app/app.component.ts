@@ -76,9 +76,7 @@ ngOnDestroy(){
 
     this.temp = this.random;
     this.time=new Date().getTime() + 10*1000;
-    if(this.count==5)
-    alert("Game Over");
-      }
+  }
 
 }
   
