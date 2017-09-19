@@ -33,14 +33,15 @@ time:any;
   }
 
   ngOnInit() {
-    this.timer = Observable.timer(0,90000);
+    this.timer = Observable.timer(90000);
     // subscribing to a observable returns a subscription object
     this.sub = this.timer.subscribe(t => this.tickerFunc(t));
     }
 
   tickerFunc(tick){
     console.log(this);
-    this.ticks = tick
+    this.ticks = tick;
+    alert("Game Over");
 }
 ngOnDestroy(){
   console.log("Destroy timer");
