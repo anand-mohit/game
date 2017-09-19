@@ -13,3 +13,16 @@ padding-right:185px;
 .modalbutton{
     margin: 50px;
 }
+h1{
+    text-align: center;
+
+}
+label{
+    display: block;
+}
+.alert{
+    display: none;
+}
+.dropdown{
+    display: block;
+}

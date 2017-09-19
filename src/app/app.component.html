@@ -46,28 +46,29 @@
         </div>
         <div class="modal-body">
             
-            <form class="horizontal-form">
-            <label>First Name:</label>
-                <input type="text" name="name"><br>
-              <label>Last Name:</label>
-                <input type="text" name="email"><br> 
-                  <label>E-mail:</label>
-                    <input type="text" name="phoneno"><br> 
-              <label> Score:</label>
-            <input type="text" name="date"><br>	
-            </form>
-
-          </div>
+          <form class="horizontal-form">
+            <label>Name:</label>
+            <input #nameBox type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" required>
+              <label>E-mail:</label>
+              <input #emailBox type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email" data-error="Email address is invalid" required>
+              <label>ID:</label>
+              <input #idBox type="number"  max="999999999" class="form-control" id="inputNumber" placeholder="Id" data-error="ID is invalid" required>
+              <div class="dropdown">
+                  <label class="control-label">Location  </label>
+                   <select #city type="A" class="btn btn-default btn-block dropdown-toggle">
+             
+                    <option>Mumbai</option>
+                     <option>Chennai</option>
+                     <option>Kolkata</option>
+                     <option>Bangaluru</option>
+                     <option>Guwahati</option>
+                   </select>
+             </div><br>
+          </form>
+              <h1>Score:{{count}}</h1>
+        </div>
             <div class="modal-footer">
-            <button id="signupbutton">Send</button>
-            <div class="alert alert-success alert-block fade in" id="signedUp">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-  
-            <h4>Congratulations!</h4>
-            <p>Your score has been sent! </p>
-          </div>
-
-              
+            <button (click)="(onSubmit(nameBox.value,emailBox.value,idBox.value,city.value))" id="Sendbutton">Send</button>              
         </div>
       </div>
     </div>

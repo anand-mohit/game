@@ -1,5 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import { Observable, Subscription } from 'rxjs/Rx';
+import { Headers, Http } from '@angular/http';
 // import './app.component.js';
 
 @Component({
@@ -9,6 +10,14 @@ import { Observable, Subscription } from 'rxjs/Rx';
   
 })
 export class AppComponent implements OnInit, OnDestroy {
+
+  constructor(private http: Http) { };
+
+  Url = 'http://172.23.238.209:8080/hackathon';
+  private headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json',
+  'Access-Control-Allow-Origin' : 'http://localhost:4200', 'Access-Control-Allow-Credentials': 'true'});
+
+
   title = 'app';
   private timer;
   private sub;
@@ -31,7 +40,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
  }
 
+
+
 ngOnInit() {
+
     this.timer = Observable.timer(90000);
     // subscribing to a observable returns a subscription object
     this.sub = this.timer.subscribe(t => this.tickerFunc(t));
@@ -49,7 +61,9 @@ startTimer():void{
   tickerFunc(tick){
     console.log(this);
     this.ticks = tick;
-    alert("game over");
+
+    alert("Game Over");
+
 }
 ngOnDestroy(){
   console.log("Destroy timer");
@@ -91,7 +105,9 @@ change(btn,number:any)
 
 
     this.temp = this.random;
+
 }
+
 
 
 resetfunc():void{
@@ -114,5 +130,21 @@ resetfunc():void{
   this.state='b'+this.random;
   var property=document.getElementById(this.state);
   property.style.background="white";
-} 
+} gitURL
+
+onSubmit(name, email, id, city){
+  
+  console.log('Submitting json', JSON.stringify({name: name, emailId: email,
+    projectId: id, location: city,}));
+
+    const j = JSON.stringify({name: name, emailId: email,
+      projectId: id, location: city});
+      this.http
+      .post('http://172.23.238.209:8080/hackathon', j, {headers: this.headers}).toPromise().catch(this.handleError);
+
 }
+private handleError(error: any) {
+  console.error('An error occurred', error); // for demo purposes only
+}
+}
+
