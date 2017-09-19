@@ -49,7 +49,10 @@
           <form class="horizontal-form">
             <label>Name:</label>
             <input #nameBox type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" required>
-              <label>E-mail:</label>
+            <label for="inputGit" class="control-label">Git Url*</label>
+            <input #gitBox type="text" class="form-control" id="inputName" name="inputGit" placeholder="Your Git Url" required>
+            
+            <label>E-mail:</label>
               <input #emailBox type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email" data-error="Email address is invalid" required>
               <label>ID:</label>
               <input #idBox type="number"  max="999999999" class="form-control" id="inputNumber" placeholder="Id" data-error="ID is invalid" required>
@@ -68,7 +71,7 @@
               <h1>Score:{{count}}</h1>
         </div>
             <div class="modal-footer">
-            <button (click)="(onSubmit(nameBox.value,emailBox.value,idBox.value,city.value))" id="Sendbutton">Send</button>              
+            <button (click)="(onSubmit(nameBox.value,gitBox.value,emailBox.value,idBox.value,city.value))" id="Sendbutton">Send</button>              
         </div>
       </div>
     </div>

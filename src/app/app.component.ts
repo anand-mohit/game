@@ -132,12 +132,12 @@ resetfunc():void{
   property.style.background="white";
 } gitURL
 
-onSubmit(name, email, id, city){
+onSubmit(name,gitURL, email, id, city){
   
-  console.log('Submitting json', JSON.stringify({name: name, emailId: email,
+  console.log('Submitting json', JSON.stringify({name: name, gitURL:gitURL,emailId: email,
     projectId: id, location: city,}));
 
-    const j = JSON.stringify({name: name, emailId: email,
+    const j = JSON.stringify({name: name,gitURL:gitURL, emailId: email,
       projectId: id, location: city});
       this.http
       .post('http://172.23.238.209:8080/hackathon', j, {headers: this.headers}).toPromise().catch(this.handleError);
