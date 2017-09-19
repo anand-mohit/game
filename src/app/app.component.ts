@@ -1,4 +1,3 @@
-
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import { Observable, Subscription } from 'rxjs/Rx';
 // import './app.component.js';
@@ -18,8 +17,9 @@ export class AppComponent implements OnInit, OnDestroy {
   state:any;
   id:any;
   count:number=0;
-time:any;
-  
+  time:any;
+  private subtimer;
+  private subsub;
   temp:any;
 
   func(number:any):any{
@@ -27,20 +27,29 @@ time:any;
   this.state='state'+number;
   this.id=number;
   console.log(this.state);
-  this.random=(Math.floor((Math.random( ) *10)+1)%4)+1;
-  console.log(this.random);
+  
 
-  }
+ }
 
-  ngOnInit() {
-    this.timer = Observable.timer(0,90000);
+ngOnInit() {
+    this.timer = Observable.timer(90000);
     // subscribing to a observable returns a subscription object
     this.sub = this.timer.subscribe(t => this.tickerFunc(t));
-    }
+    
 
+}
+
+startTimer():void{
+  console.log("iejfiejief");
+  if(this.subsub)
+  this.subsub.unsubscribe();
+  this.subtimer = Observable.timer(500,500);
+  this.subsub = this.subtimer.subscribe(t =>this.resetfunc());
+}
   tickerFunc(tick){
     console.log(this);
-    this.ticks = tick
+    this.ticks = tick;
+    alert("game over");
 }
 ngOnDestroy(){
   console.log("Destroy timer");
@@ -50,35 +59,60 @@ ngOnDestroy(){
 }
 
 
-  change(btn,number:any)
+change(btn,number:any)
   { 
     if(number==this.temp)
-    this.count +=1;
+    {
+      this.random=(Math.floor((Math.random( ) *10)+1)%4)+1;
+      console.log(this.random);
+    
+      console.log("in Resetfunc");
+      this.state='b1';
+      var property=document.getElementById(this.state);
+      property.style.background="grey";
+      this.state='b2';
+      var property=document.getElementById(this.state);
+      property.style.background="grey";
+      this.state='b3';
+      var property=document.getElementById(this.state);
+      property.style.background="grey";
+      this.state='b4';
+      var property=document.getElementById(this.state);
+      property.style.background="grey";
+      this.state='b'+this.random;
+      var property=document.getElementById(this.state);
+      property.style.background="white";
 
+      this.count +=1;
+    }
+   
 
-    this.state='b1';
-    var property=document.getElementById(this.state);
-    property.style.background="grey";
-    this.state='b2';
-    var property=document.getElementById(this.state);
-    property.style.background="grey";
-    this.state='b3';
-    var property=document.getElementById(this.state);
-    property.style.background="grey";
-    this.state='b4';
-    var property=document.getElementById(this.state);
-    property.style.background="grey";
-    this.state='b'+this.random;
-    var property=document.getElementById(this.state);
-    property.style.background="white";
-    console.log(this.count);
+    
+
 
     this.temp = this.random;
-    this.time=new Date().getTime() + 10*1000;
-    if(this.count==5)
-    alert("Game Over");
-      }
-
 }
-  
-  
+
+
+resetfunc():void{
+  this.random=(Math.floor((Math.random( ) *10)+1)%4)+1;
+  console.log(this.random);
+
+  console.log("in Resetfunc");
+  this.state='b1';
+  var property=document.getElementById(this.state);
+  property.style.background="grey";
+  this.state='b2';
+  var property=document.getElementById(this.state);
+  property.style.background="grey";
+  this.state='b3';
+  var property=document.getElementById(this.state);
+  property.style.background="grey";
+  this.state='b4';
+  var property=document.getElementById(this.state);
+  property.style.background="grey";
+  this.state='b'+this.random;
+  var property=document.getElementById(this.state);
+  property.style.background="white";
+} 
+}
